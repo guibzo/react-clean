@@ -1,3 +1,4 @@
+import { Providers } from '@/components/providers'
 import '@/styles/global.css'
 import type { Metadata } from 'next'
 
@@ -15,7 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='pt'>
-      <body className='antialiased'>{children}</body>
+      <body className='antialiased'>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   )
 }
