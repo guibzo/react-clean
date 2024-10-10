@@ -11,11 +11,11 @@
 
 ### Cache
 
-- Usados nos **use-cases**
+- Gerenciado pelas **actions**
   - Local Storage
-    - Cookies
-      - Client
-      - Server
+  - Cookies
+    - Client
+    - Server
 
 ### HTTP
 
@@ -34,4 +34,5 @@
 
 ### TO-DO:
 
-- Criar cliente HTTP com **ky**.
+- Criar cliente HTTP com ky ou axios.
+- Implementar tanstack (talvez ssr/csr).
