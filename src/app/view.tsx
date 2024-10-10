@@ -13,6 +13,10 @@ import type { TypeSchema } from './types'
 // type ViewProps = ReturnType<typeof useController>
 
 export const View = () => {
+  // const cookies = new CookiesAdapter()
+
+  // const test = cookies.get('test')
+  // console.log('client cookie', test)
   const { onSubmit: controllerSubmit } = useController()
 
   const { inputs, onSubmit, isSubmitting } = useFormValidation<TypeSchema>({
