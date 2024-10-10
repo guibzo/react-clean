@@ -3,11 +3,7 @@ import Cookies from 'js-cookie'
 import type { DefaultCookieOptions } from '../_types/DefaultCookieOptions'
 
 export class ClientCookiesAdapter implements ICacheStorage {
-  set(
-    key: string,
-    value: object | string,
-    options?: DefaultCookieOptions | undefined,
-  ): void {
+  set(key: string, value: object | string, options?: DefaultCookieOptions | undefined): void {
     if (value) {
       Cookies.set(key, JSON.stringify(value), {
         domain: process.env.NEXT_PUBLIC_MAIN_DOMAIN,

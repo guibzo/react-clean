@@ -1,6 +1,6 @@
 'use client'
 
-import { Toaster as SonnerToaster } from '@/components/ui/sonner'
+import { Toaster as SonnerToaster } from '@/application/components/ui/sonner'
 
 interface Props {
   children: React.ReactNode

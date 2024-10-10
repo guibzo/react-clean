@@ -19,11 +19,7 @@ export class ServerCookiesAdapter implements ICacheStorage {
     }
   }
 
-  set(
-    key: string,
-    value: string | object,
-    options?: NextCookieOptions | undefined,
-  ): void {
+  set(key: string, value: string | object, options?: NextCookieOptions | undefined): void {
     try {
       setCookie(key, JSON.stringify(value), {
         cookies,

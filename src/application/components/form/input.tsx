@@ -1,5 +1,5 @@
-import { Input as InputComponent } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import { Input as InputComponent } from '@/application/components/ui/input'
+import { Label } from '@/application/components/ui/label'
 import { MaskProps } from '@react-input/mask'
 import React, { ForwardedRef } from 'react'
 import { UseFormRegisterReturn } from 'react-hook-form'

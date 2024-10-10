@@ -1,9 +1,8 @@
-import { cn } from '@/lib/cn'
+import { cn } from '@/application/lib/cn'
 import { MaskProps, useMask } from '@react-input/mask'
 import React from 'react'
 
-export interface MaskedInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface MaskedInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   mask?: MaskProps
 }
 

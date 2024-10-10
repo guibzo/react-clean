@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { FieldErrors, useForm, type DefaultValues } from 'react-hook-form'
 import { z as zod } from 'zod'
 
-import { CustomFormResultToast } from '@/components/form-result-toast'
-import { getSchemaShape } from '@/utils/getSchemaSchape'
+import { CustomFormResultToast } from '@/application/components/form-result-toast'
+import { getSchemaShape } from '@/application/utils/getSchemaSchape'
 import { FieldValues } from 'react-hook-form'
 
 type UseFormValidationParams<T extends FieldValues> = {

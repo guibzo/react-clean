@@ -37,9 +37,7 @@ export const CustomFormResultToast = ({
 
       <div>
         <h2 className='font-bold text-foreground'>{title || defaultTitle}</h2>
-        <p className='text-xs text-muted-foreground'>
-          {description || defaultDescription}
-        </p>
+        <p className='text-xs text-muted-foreground'>{description || defaultDescription}</p>
       </div>
     </div>,
   )

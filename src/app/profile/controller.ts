@@ -1,10 +1,7 @@
-import { useFormValidation } from '@/hooks/useFormValidation'
+import { useFormValidation } from '@/application/hooks/useFormValidation'
 import { doGetProfile } from '@/infra/actions/profile/_index'
 import { useHookFormMask } from 'use-mask-input'
-import {
-  changeAddressFormErrorMessages,
-  changeAddressFormSchema,
-} from './schema'
+import { changeAddressFormErrorMessages, changeAddressFormSchema } from './schema'
 import type { TypeSchema } from './types'
 
 export const useController = () => {
