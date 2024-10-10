@@ -1,7 +1,7 @@
 import { View } from './(view)/view'
 
 export const metadata = {
-  title: 'Example',
+  title: 'Profile',
 }
 
 export default function Home() {
