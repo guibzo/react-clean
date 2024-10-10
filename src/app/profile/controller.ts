@@ -1,4 +1,4 @@
-import { doGetWorker } from '@/infra/server-actions/random/_index'
+import { doGetWorker } from '@/infra/actions/random/_index'
 import type { TypeSchema } from './types'
 
 export const useController = () => {

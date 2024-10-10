@@ -1,11 +1,13 @@
-## Docs
+## Docs - fluxo
 
 ## Infra
 
-### Use-Cases
+### Actions
 
+- Server actions
+- Use-cases/Serviços
 - Usados nos **controllers**
-  - Serviços em geral
+  - Além de executar as requests HTTP, gerenciam o cache e lógica relacionada á um serviço
 
 ### Cache
 
@@ -15,14 +17,9 @@
       - Client
       - Server
 
-### Server Actions
-
-- Usados nos **use-cases**
-  - Além de executar as requests HTTP, gerenciam o cache
-
 ### HTTP
 
-- Usados nas **server actions**
+- Usados nas **actions**
   - Requests
 
 ### Controllers
