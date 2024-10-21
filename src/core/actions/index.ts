@@ -1,1 +1,1 @@
-export * from './profile/doGetProfile'
+export * from './profile/GetProfileAction'

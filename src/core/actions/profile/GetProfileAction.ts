@@ -1,14 +1,14 @@
 'use server'
 
 import { ServerCookiesAdapter } from '@/infra/cache/ServerCookiesAdapter'
-import { httpFetchClient, type HttpFetchClientError } from '@/infra/http/fetch-client'
+import { httpFetchClient, type HttpFetchClientError } from '@/infra/http/FetchClient'
 import type { INextFetchParams } from '../INextFetchParams'
 
-type IDoGetProfileRequest = INextFetchParams & {
+type IGetProfileActionRequest = INextFetchParams & {
   id: string
 }
 
-type IDoGetProfileResponse =
+type IGetProfileActionResponse =
   | {
       user: {
         name: string
@@ -17,11 +17,11 @@ type IDoGetProfileResponse =
     }
   | HttpFetchClientError
 
-export async function doGetProfile({
+export async function GetProfileAction({
   id,
   nextParams,
-}: IDoGetProfileRequest): Promise<IDoGetProfileResponse> {
-  const result: IDoGetProfileResponse = await httpFetchClient({
+}: IGetProfileActionRequest): Promise<IGetProfileActionResponse> {
+  const result: IGetProfileActionResponse = await httpFetchClient({
     method: 'GET',
     service: 'profile',
     path: `/users/${id}`,

@@ -1,12 +1,12 @@
-import { useFormValidation } from '@/application/hooks/useFormValidation'
-import { doGetProfile } from '@/infra/actions/profile/_index'
+import { useFormValidation } from '@/application/hooks/use-form-validation'
+import { GetProfileAction } from '@/core/actions'
 import { useHookFormMask } from 'use-mask-input'
-import { changeAddressFormErrorMessages, changeAddressFormSchema } from './schema'
+import { changeAddressFormErrorMessages, changeAddressFormSchema } from './schemas'
 import type { TypeSchema } from './types'
 
 export const useController = () => {
   const onGetProfile = async (formData: TypeSchema) => {
-    await doGetProfile()
+    await GetProfileAction({ id: '123' })
     console.log(formData)
   }
 
