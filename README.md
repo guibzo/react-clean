@@ -1,7 +1,5 @@
 ## Docs - fluxo
 
-## Infra
-
 ### Actions
 
 - Server actions
@@ -32,7 +30,13 @@
 
 - Apresentação do(s) componente(s) em tela
 
+### File Casing
+
+- Arquivos na pasta app e application: kebab-case.
+- Os demais: PascalCase.
+
 ### TO-DO:
 
-- Criar cliente HTTP com ky ou axios.
-- Implementar tanstack (talvez ssr/csr).
+- Implementar Tanstack (talvez ssr/csr).
+- Testes.
+- Zustand?
