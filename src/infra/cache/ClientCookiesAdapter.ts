@@ -1,6 +1,6 @@
-import type { ICacheStorage } from '@/infra/_interfaces/cache/ICacheStorage'
+import type { ICacheStorage } from '@/infra/@interfaces/cache/ICacheStorage'
 import Cookies from 'js-cookie'
-import type { DefaultCookieOptions } from '../_types/DefaultCookieOptions'
+import type { DefaultCookieOptions } from '../@types/DefaultCookieOptions'
 
 export class ClientCookiesAdapter implements ICacheStorage {
   set(key: string, value: object | string, options?: DefaultCookieOptions | undefined): void {

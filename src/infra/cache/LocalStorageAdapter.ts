@@ -1,4 +1,4 @@
-import type { ICacheStorage } from '@/infra/_interfaces/cache/ICacheStorage'
+import type { ICacheStorage } from '@/infra/@interfaces/cache/ICacheStorage'
 
 const isClientSide = typeof window !== 'undefined'
 

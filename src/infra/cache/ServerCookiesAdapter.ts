@@ -4,10 +4,10 @@
 	REF: https://nextjs.org/docs/app/api-reference/functions/cookies, https://github.com/andreizanik/cookies-next
 */
 
-import type { ICacheStorage } from '@/infra/_interfaces/cache/ICacheStorage'
+import type { ICacheStorage } from '@/infra/@interfaces/cache/ICacheStorage'
 import { deleteCookie, getCookie, getCookies, setCookie } from 'cookies-next'
 import { cookies } from 'next/headers'
-import type { NextCookieOptions } from '../_types/NextCookieOptions'
+import type { NextCookieOptions } from '../@types/NextCookieOptions'
 
 export class ServerCookiesAdapter implements ICacheStorage {
   get(key: string): string | null {
