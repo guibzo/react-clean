@@ -4,6 +4,8 @@
 	REF: https://nextjs.org/docs/app/api-reference/functions/cookies, https://github.com/andreizanik/cookies-next
 */
 
+import 'server-only'
+
 import type { ICacheStorage } from '@/infra/@interfaces/cache/ICacheStorage'
 import { deleteCookie, getCookie, getCookies, setCookie } from 'cookies-next'
 import { cookies } from 'next/headers'

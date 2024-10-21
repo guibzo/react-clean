@@ -1,3 +1,4 @@
+// deprecated for now
 import type { CookiesFn } from 'cookies-next/lib/types'
 
 export const getCookiesStore = async () => {

@@ -1,3 +1,5 @@
+import 'client-only'
+
 import type { ICacheStorage } from '@/infra/@interfaces/cache/ICacheStorage'
 import Cookies from 'js-cookie'
 import type { DefaultCookieOptions } from '../@types/DefaultCookieOptions'
