@@ -1,35 +1,19 @@
 'use server'
 
 import { ServerCookiesAdapter } from '@/infra/cache/ServerCookiesAdapter'
-import { httpFetchClient, type HttpFetchClientError } from '@/infra/http/FetchClient'
+import { callGetProfile } from '@/infra/http/products/CallGetProfile'
 import type { INextFetchParams } from '../INextFetchParams'
 
 type IGetProfileActionRequest = INextFetchParams & {
   id: string
 }
 
-type IGetProfileActionResponse =
-  | {
-      user: {
-        name: string
-        email: string
-      }
-    }
-  | HttpFetchClientError
-
-export async function GetProfileAction({
-  id,
-  nextParams,
-}: IGetProfileActionRequest): Promise<IGetProfileActionResponse> {
-  const result: IGetProfileActionResponse = await httpFetchClient({
-    method: 'GET',
-    service: 'profile',
-    path: `/users/${id}`,
-    nextParams,
-  })
+export async function GetProfileAction({ id, nextParams }: IGetProfileActionRequest) {
+  const result = await callGetProfile({ nextParams, id })
 
   if ('error' in result) {
-    return result
+    console.error(result)
+    return null
   }
 
   const cookies = new ServerCookiesAdapter()

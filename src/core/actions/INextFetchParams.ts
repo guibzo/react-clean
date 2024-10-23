@@ -1,5 +1,6 @@
 import type { RequestInit } from 'next/dist/server/web/spec-extension/request'
 
-export interface INextFetchParams {
-  nextParams?: RequestInit
-}
+export interface INextFetchParams
+  extends Partial<{
+    nextParams: RequestInit
+  }> {}

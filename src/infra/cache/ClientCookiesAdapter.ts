@@ -8,7 +8,6 @@ export class ClientCookiesAdapter implements ICacheStorage {
   set(key: string, value: object | string, options?: DefaultCookieOptions | undefined): void {
     if (value) {
       Cookies.set(key, JSON.stringify(value), {
-        domain: process.env.NEXT_PUBLIC_MAIN_DOMAIN,
         secure: true,
         sameSite: 'None',
         ...options,

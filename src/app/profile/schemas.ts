@@ -3,6 +3,7 @@ import { z } from 'zod'
 export const changeAddressFormErrorMessages: { [key: string]: string } = {
   NEIGHBOURHOOD_IS_INVALID: 'O bairro deve ter pelo menos 4 caracteres',
   CEP_IS_INVALID: 'CEP inválido. Ex: 14230-500',
+  ID_IS_INVALID: 'ID inválido.',
 }
 
 export const changeAddressFormSchema = z.object({
@@ -14,4 +15,5 @@ export const changeAddressFormSchema = z.object({
     .refine((val) => /^\d{5}-\d{3}$/.test(val), {
       message: 'CEP_IS_INVALID',
     }),
+  id: z.string().trim().min(1, 'ID_IS_INVALID'),
 })

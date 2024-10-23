@@ -2,7 +2,7 @@ import { env } from '@/infra/env'
 import type { RequestInit } from 'next/dist/server/web/spec-extension/request'
 import { ServerCookiesAdapter } from '../cache/ServerCookiesAdapter'
 
-type ServiceName = 'profile'
+type ServiceName = 'v1'
 type Path = string
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 type Body = BodyInit | null
