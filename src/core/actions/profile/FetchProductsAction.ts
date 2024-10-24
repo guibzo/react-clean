@@ -1,17 +1,14 @@
 'use server'
 
+import type { IFetchProductsRequest } from '@/infra/@types/common/IFetchProduts'
 import { ServerCookiesAdapter } from '@/infra/cache/ServerCookiesAdapter'
 import { callFetchProducts } from '@/infra/http/products/CallFetchProducts'
-import type { INextFetchParams } from '../INextFetchParams'
 
-type IFetchProductsActionRequest = INextFetchParams
-
-export async function FetchProductsAction({ nextParams }: IFetchProductsActionRequest) {
+export async function FetchProductsAction({ nextParams }: IFetchProductsRequest) {
   const result = await callFetchProducts({ nextParams })
 
   if ('error' in result) {
-    console.error(result)
-    return []
+    return result
   }
 
   const cookies = new ServerCookiesAdapter()

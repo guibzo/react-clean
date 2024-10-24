@@ -9,7 +9,7 @@ import 'server-only'
 import type { ICacheStorage } from '@/infra/@interfaces/cache/ICacheStorage'
 import { deleteCookie, getCookie, getCookies, setCookie } from 'cookies-next'
 import { cookies } from 'next/headers'
-import type { NextCookieOptions } from '../@types/NextCookieOptions'
+import type { NextCookieOptions } from '../@types/cache/NextCookieOptions'
 
 export class ServerCookiesAdapter implements ICacheStorage {
   get(key: string): string | null {

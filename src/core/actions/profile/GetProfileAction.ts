@@ -1,19 +1,14 @@
 'use server'
 
+import type { IGetProfileRequest } from '@/infra/@types/common/IGetProfile'
 import { ServerCookiesAdapter } from '@/infra/cache/ServerCookiesAdapter'
 import { callGetProfile } from '@/infra/http/products/CallGetProfile'
-import type { INextFetchParams } from '../INextFetchParams'
 
-type IGetProfileActionRequest = INextFetchParams & {
-  id: string
-}
-
-export async function GetProfileAction({ id, nextParams }: IGetProfileActionRequest) {
+export async function GetProfileAction({ id, nextParams }: IGetProfileRequest) {
   const result = await callGetProfile({ nextParams, id })
 
   if ('error' in result) {
-    console.error(result)
-    return null
+    return result
   }
 
   const cookies = new ServerCookiesAdapter()

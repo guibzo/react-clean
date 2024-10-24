@@ -1,8 +1,8 @@
-import { FetchProductsAction } from '@/core/actions/profile/FetchProductsAction'
-import type { Product } from '@/infra/@types/Product'
+import type { Product } from '@/infra/@types/entities/Product'
+import { FetchProductsGateway } from '@/infra/gateways/FetchProductsGateway'
 
 export const ProductsList = async () => {
-  const products: Product[] = await FetchProductsAction({})
+  const products: Product[] = await FetchProductsGateway({})
 
   return (
     <ul className='h-[200px] overflow-y-auto'>

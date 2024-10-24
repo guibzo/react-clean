@@ -1,5 +1,5 @@
 import type { INextFetchParams } from '@/core/actions/INextFetchParams'
-import type { Product } from '@/infra/@types/Product'
+import type { Product } from '@/infra/@types/entities/Product'
 import { httpFetchClient, type HttpFetchClientError } from '../FetchClient'
 
 type Params = INextFetchParams

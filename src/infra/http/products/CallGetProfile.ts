@@ -1,5 +1,5 @@
 import type { INextFetchParams } from '@/core/actions/INextFetchParams'
-import type { User } from '@/infra/@types/User'
+import type { User } from '@/infra/@types/entities/User'
 import { httpFetchClient, type HttpFetchClientError } from '../FetchClient'
 
 type Params = INextFetchParams & {

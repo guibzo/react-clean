@@ -1,4 +1,4 @@
-import { User } from '@/infra/@types/User'
+import { User } from '@/infra/@types/entities/User'
 import { ClientCookiesAdapter } from '@/infra/cache/ClientCookiesAdapter'
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 
@@ -20,7 +20,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User>()
 
   useEffect(() => {
-    const userData: User | null = cookies.get('user') as User | null
+    const userData = cookies.get('user') as User | null
 
     if (userData) {
       setUser(userData)
