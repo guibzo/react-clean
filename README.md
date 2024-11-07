@@ -1,3 +1,5 @@
+Add input with error automatically
+
 ## Docs - fluxo
 
 ### Actions
