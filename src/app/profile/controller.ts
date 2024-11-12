@@ -10,15 +10,18 @@ export const useController = () => {
   const [user, setUser] = useState<User>()
 
   const onGetProfile = async (formData: TypeSchema) => {
+    console.log(formData)
     const response = await GetProfileGateway({ id: formData.id })
 
     setUser(response)
   }
 
-  const { inputs, onSubmit, isSubmitting } = useFormValidation<TypeSchema>({
+  const { inputs, onSubmit, isSubmitting, returnableErrors } = useFormValidation<TypeSchema>({
     schema: changeAddressFormSchema,
     errorMessages: changeAddressFormErrorMessages,
     submit: onGetProfile,
+    returnableErrorsType: 'multiple',
+    hideErrorToast: true,
   })
 
   const inputsMask = useHookFormMask(inputs)
@@ -29,5 +32,6 @@ export const useController = () => {
     inputsMask,
     isSubmitting,
     user,
+    returnableErrors,
   }
 }
