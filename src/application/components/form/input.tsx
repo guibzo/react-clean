@@ -1,10 +1,9 @@
 import { Input as InputComponent } from '@/application/components/ui/input'
 import { Label } from '@/application/components/ui/label'
-import type { ReturnableError } from '@/application/hooks/use-form-validation'
 import { cn } from '@/application/lib/cn'
 import { MaskProps } from '@react-input/mask'
 import React, { ForwardedRef } from 'react'
-import { UseFormRegisterReturn } from 'react-hook-form'
+import { FieldError, FieldErrors, UseFormRegisterReturn } from 'react-hook-form'
 
 type InputProps = {
   label?: string
@@ -15,8 +14,10 @@ type InputProps = {
   avoidAutocomplete?: boolean
   defaultValue?: string
   value?: string
-  returnableError?: ReturnableError
+  highlightInputFieldOnError?: boolean
   showInputError?: boolean
+  inputErrors?: FieldErrors
+  errorMessages: Record<string, string>
 } & UseFormRegisterReturn
 
 export const Input = React.forwardRef(
@@ -27,16 +28,42 @@ export const Input = React.forwardRef(
       placeholder,
       className,
       mask,
+      highlightInputFieldOnError,
       avoidAutocomplete,
       defaultValue,
       value,
-      returnableError,
+      inputErrors,
       showInputError,
+      errorMessages,
       ...register
     }: InputProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
-    const isErrorBelongingToThisInput = returnableError?.fieldName === register.name
+    const inputErrorsArray: [string, FieldError | undefined][] = Object.entries(
+      inputErrors || {},
+    ).filter(([key, value]) => key !== 'root' && value !== undefined) as [
+      string,
+      FieldError | undefined,
+    ][]
+
+    const formattedInputErrors = inputErrorsArray.map(([key, value]) => {
+      if (value && typeof value === 'object' && errorMessages) {
+        const errorMsg = errorMessages[value.message as string]
+
+        return {
+          key,
+          value: {
+            ...value,
+            message: errorMsg || value.message,
+          },
+        }
+      }
+
+      throw new Error('inputErrors must be an object with defined errors.')
+    })
+
+    const currentInputError = formattedInputErrors.find((err) => err.key === register.name)
+    const showCurrentInputError = showInputError && currentInputError
 
     return (
       <div className='mb-3 grid w-full items-center gap-1.5'>
@@ -49,17 +76,16 @@ export const Input = React.forwardRef(
           type={type}
           mask={mask}
           className={cn(
-            showInputError &&
-              isErrorBelongingToThisInput &&
-              'border-red-500 focus-visible:border-red-500 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-red-500',
+            (showCurrentInputError || highlightInputFieldOnError) &&
+              'border-red-500 placeholder:text-muted-foreground/50 focus-visible:border-red-500 focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-red-500',
             className,
           )}
           defaultValue={defaultValue}
           autoComplete={avoidAutocomplete ? 'one-time-code' : undefined}
         />
 
-        {showInputError && isErrorBelongingToThisInput && (
-          <p className='text-sm text-red-500'>{returnableError.errorMessage}</p>
+        {showCurrentInputError && (
+          <p className='text-sm text-red-500'>{currentInputError.value.message}</p>
         )}
       </div>
     )

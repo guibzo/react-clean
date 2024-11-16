@@ -42,3 +42,4 @@ Add input with error automatically
 - Implementar Tanstack (talvez ssr/csr).
 - Testes.
 - Zustand?
+- Mais abstrações.

@@ -16,12 +16,11 @@ export const useController = () => {
     setUser(response)
   }
 
-  const { inputs, onSubmit, isSubmitting, returnableErrors } = useFormValidation<TypeSchema>({
+  const { inputs, onSubmit, isSubmitting, inputErrors } = useFormValidation<TypeSchema>({
     schema: changeAddressFormSchema,
     errorMessages: changeAddressFormErrorMessages,
     submit: onGetProfile,
-    returnableErrorsType: 'multiple',
-    hideErrorToast: true,
+    toastErrorsShowType: 'multiple',
   })
 
   const inputsMask = useHookFormMask(inputs)
@@ -32,6 +31,6 @@ export const useController = () => {
     inputsMask,
     isSubmitting,
     user,
-    returnableErrors,
+    inputErrors,
   }
 }

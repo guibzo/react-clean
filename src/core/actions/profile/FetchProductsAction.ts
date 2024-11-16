@@ -1,6 +1,6 @@
 'use server'
 
-import type { IFetchProductsRequest } from '@/infra/@types/common/IFetchProduts'
+import type { IFetchProductsRequest } from '@/infra/@types/common/IFetchProducts'
 import { ServerCookiesAdapter } from '@/infra/cache/ServerCookiesAdapter'
 import { callFetchProducts } from '@/infra/http/products/CallFetchProducts'
 

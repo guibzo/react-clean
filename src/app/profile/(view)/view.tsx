@@ -14,7 +14,6 @@ export const View = () => {
         </Suspense>
 
         <Form />
-
         <UserCard />
       </div>
     </div>

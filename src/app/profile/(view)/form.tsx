@@ -2,16 +2,13 @@
 
 import { Input } from '@/application/components/form/input'
 import { SubmitButton } from '@/application/components/form/submit-button'
+import type { FormInput } from '@/infra/@types/common/app/IFormInput'
 import { useController } from '../controller'
+import { changeAddressFormErrorMessages } from '../schemas'
 
-type FormInput = {
-  name: 'neighbourhood' | 'id' | 'cep'
-  label: string
-  placeholder: string
-  mask?: string
-}
+type Input = FormInput & { name: 'neighbourhood' | 'id' | 'cep' }
 
-const formInputs: FormInput[] = [
+const formInputs: Input[] = [
   {
     name: 'neighbourhood',
     label: 'Bairro',
@@ -31,23 +28,26 @@ const formInputs: FormInput[] = [
 ]
 
 export const Form = () => {
-  const { onSubmit, inputs, inputsMask, isSubmitting, returnableErrors } = useController()
+  const { onSubmit, inputs, inputsMask, isSubmitting, inputErrors } = useController()
 
   return (
     <>
       <form onSubmit={onSubmit}>
         {formInputs.map((input) => {
-          const currentInputError = returnableErrors.find((err) => err.fieldName === input.name)
-          const inputProps = input.mask ? inputsMask(input.name, input.mask) : inputs(input.name)
+          const inputProps = input.mask
+            ? inputsMask(input.name as typeof input.name, input.mask)
+            : inputs(input.name as typeof input.name)
 
           return (
             <Input
               key={input.name}
-              {...inputProps}
               label={input.label}
               placeholder={input.placeholder}
+              type={input.type}
+              errorMessages={changeAddressFormErrorMessages}
+              inputErrors={inputErrors}
               showInputError
-              returnableError={currentInputError}
+              {...inputProps}
             />
           )
         })}

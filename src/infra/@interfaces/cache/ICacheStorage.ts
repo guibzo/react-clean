@@ -1,4 +1,4 @@
-import type { NextCookieOptions } from '@/infra/@types/NextCookieOptions'
+import type { NextCookieOptions } from '@/infra/@types/cache/NextCookieOptions'
 
 export interface ICacheStorage {
   get: (key: string) => string | null

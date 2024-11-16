@@ -4,14 +4,14 @@ import { FieldErrors, FieldValues, useForm, type DefaultValues } from 'react-hoo
 import { z as zod } from 'zod'
 
 import { CustomFormResultToast } from '@/application/components/form-result-toast'
-import { getSchemaShape } from '@/application/utils/get-schema-schape'
+import { getSchemaShape } from '../utils/get-schema-schape'
 
 type UseFormValidationParams<T extends FieldValues> = {
   schema: zod.ZodObject<any> | zod.ZodEffects<zod.ZodObject<any>>
   errorMessages: { [key: string]: string }
   submit: (input: T) => Promise<void>
   defaultValues?: DefaultValues<T>
-  returnableErrorsType?: 'multiple' | 'single'
+  toastErrorsShowType?: 'multiple' | 'single'
   hideErrorToast?: boolean
 }
 
@@ -25,37 +25,29 @@ export function useFormValidation<T extends FieldValues>({
   errorMessages,
   submit,
   defaultValues,
-  returnableErrorsType = 'single',
+  toastErrorsShowType = 'single',
   hideErrorToast,
 }: UseFormValidationParams<T>) {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [returnableErrors, setReturnableErrors] = useState<ReturnableError[]>([])
 
-  const { register, handleSubmit, reset, control } = useForm<T>({
+  const { register, handleSubmit, reset, control, formState } = useForm<T>({
     resolver: zodResolver(schema),
     defaultValues,
   })
 
-  // TO-DO: RESOLVER O PROBLEMA DE MANTER O ERRO APENAS SE O VALOR DO CAMPO AINDA ESTIVER INVÁLIDO
+  const showSubmitSuccess = () => {
+    CustomFormResultToast({
+      variant: 'success',
+    })
+  }
 
-  // const watchedFields = useWatch({ control })
-  // console.log('values', watchedFields)
-
-  // useEffect(() => {
-  //   setReturnableErrors((prevErrors) =>
-  //     prevErrors.filter((error) => {
-  //       const currentValue = watchedFields[error.fieldName as keyof T] as unknown
-
-  //       // Validação do campo para determinar se o erro deve ser removido
-  //       const fieldError = schema.safeParse({ [error.fieldName]: currentValue })
-
-  //       // Mantém o erro apenas se o campo ainda estiver inválido
-  //       return !fieldError.success
-  //     }),
-  //   )
-  // }, [watchedFields, schema])
-
-  console.log(returnableErrors)
+  const showToastError = (error: string) => {
+    CustomFormResultToast({
+      variant: 'error',
+      title: errorMessages[error] ?? 'Erro ao realizar a operação',
+      description: 'Verifique os dados e tente novamente',
+    })
+  }
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -69,8 +61,9 @@ export function useFormValidation<T extends FieldValues>({
           setIsSubmitting(false)
           reset()
         } catch (error: any) {
-          showSubmitError(error.message)
+          showToastError(error.message)
           setIsSubmitting(false)
+          console.log(error)
         }
       },
       async (errors: FieldErrors<T>) => {
@@ -78,20 +71,6 @@ export function useFormValidation<T extends FieldValues>({
         setIsSubmitting(false)
       },
     )()
-  }
-
-  const showSubmitSuccess = () => {
-    CustomFormResultToast({
-      variant: 'success',
-    })
-  }
-
-  const showSubmitError = (error: string) => {
-    CustomFormResultToast({
-      variant: 'error',
-      title: errorMessages[error] ?? 'Erro ao realizar a operação',
-      description: 'Insira os dados corretamente',
-    })
   }
 
   const onError = (errors: FieldErrors<zod.infer<typeof schema>>) => {
@@ -104,19 +83,9 @@ export function useFormValidation<T extends FieldValues>({
       const error = errors?.[key]?.message?.toString()
       if (!error) continue
 
-      // @ts-ignore
-      const fieldName = errors?.[key]?.ref?.name
-      const errorMessage = errorMessages[error]
+      if (!hideErrorToast) showToastError(error)
 
-      setReturnableErrors((prevErrors) => {
-        return prevErrors.some((err) => err.fieldName === fieldName)
-          ? prevErrors
-          : [...prevErrors, { fieldName, errorMessage }]
-      })
-
-      if (!hideErrorToast) showSubmitError(error)
-
-      if (returnableErrorsType !== 'multiple') break
+      if (toastErrorsShowType !== 'multiple') break
     }
   }
 
@@ -125,9 +94,9 @@ export function useFormValidation<T extends FieldValues>({
     onSubmit,
     isSubmitting,
     setIsSubmitting,
-    showSubmitError,
+    showToastError,
     resetFields: reset,
     control,
-    returnableErrors,
+    inputErrors: formState.errors,
   }
 }
