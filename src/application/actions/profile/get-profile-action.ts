@@ -1,7 +1,7 @@
 'use server'
 
-import { ServerCookiesAdapter } from '@/app/cache/server-cookies-adapter'
-import { callGetProfile } from '@/app/http'
+import { ServerCookiesAdapter } from '@/infra/cache/server-cookies-adapter'
+import { callGetProfile } from '@/infra/http'
 import type { NextFetchParamsInterface } from '../next-fetch-params-interface'
 
 export interface GetProfileRequest extends NextFetchParamsInterface {
