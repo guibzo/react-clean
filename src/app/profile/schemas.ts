@@ -17,3 +17,5 @@ export const changeAddressFormSchema = z.object({
     }),
   id: z.string().trim().min(1, 'ID_IS_INVALID'),
 })
+
+export type ChangeAddressFormSchemaKeys = keyof z.infer<typeof changeAddressFormSchema>

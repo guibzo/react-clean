@@ -4,9 +4,9 @@ import { Input } from '@/application/components/form/input'
 import { SubmitButton } from '@/application/components/form/submit-button'
 import type { FormInput } from '@/infra/@types/common/app/IFormInput'
 import { useController } from '../controller'
-import { changeAddressFormErrorMessages } from '../schemas'
+import { changeAddressFormErrorMessages, type ChangeAddressFormSchemaKeys } from '../schemas'
 
-type Input = FormInput & { name: 'neighbourhood' | 'id' | 'cep' }
+type Input = FormInput & { name: ChangeAddressFormSchemaKeys }
 
 const formInputs: Input[] = [
   {

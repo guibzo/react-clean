@@ -1,9 +1,10 @@
 import { Input as InputComponent } from '@/application/components/ui/input'
 import { Label } from '@/application/components/ui/label'
 import { cn } from '@/application/lib/cn'
+import { getCurrentInputError } from '@/application/utils/get-current-input-error'
 import { MaskProps } from '@react-input/mask'
 import React, { ForwardedRef } from 'react'
-import { FieldError, FieldErrors, UseFormRegisterReturn } from 'react-hook-form'
+import { FieldErrors, UseFormRegisterReturn } from 'react-hook-form'
 
 type InputProps = {
   label?: string
@@ -39,30 +40,11 @@ export const Input = React.forwardRef(
     }: InputProps,
     ref: ForwardedRef<HTMLInputElement>,
   ) => {
-    const inputErrorsArray: [string, FieldError | undefined][] = Object.entries(
-      inputErrors || {},
-    ).filter(([key, value]) => key !== 'root' && value !== undefined) as [
-      string,
-      FieldError | undefined,
-    ][]
-
-    const formattedInputErrors = inputErrorsArray.map(([key, value]) => {
-      if (value && typeof value === 'object' && errorMessages) {
-        const errorMsg = errorMessages[value.message as string]
-
-        return {
-          key,
-          value: {
-            ...value,
-            message: errorMsg || value.message,
-          },
-        }
-      }
-
-      throw new Error('inputErrors must be an object with defined errors.')
+    const currentInputError = getCurrentInputError({
+      name: register.name,
+      inputErrors: inputErrors || {},
+      errorMessages,
     })
-
-    const currentInputError = formattedInputErrors.find((err) => err.key === register.name)
     const showCurrentInputError = showInputError && currentInputError
 
     return (
