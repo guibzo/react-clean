@@ -1,37 +1,21 @@
+/* 
+	Updating cookies (delete/set/clear) shall be done either on **Server Actions** or **Route Handlers**, as it is not supported to  
+	do so in client or server components.
+	REF: https://nextjs.org/docs/app/api-reference/functions/cookies, https://github.com/andreizanik/cookies-next
+*/
+
 import 'client-only'
 
 import type { ICacheStorage } from '@/infra/@interfaces/cache/ICacheStorage'
-import Cookies from 'js-cookie'
-import type { DefaultCookieOptions } from '../@types/cache/DefaultCookieOptions'
+import { getCookie } from 'cookies-next'
 
-export class ClientCookiesAdapter implements ICacheStorage {
-  set(key: string, value: object | string, options?: DefaultCookieOptions | undefined): void {
-    if (value) {
-      Cookies.set(key, JSON.stringify(value), {
-        secure: true,
-        sameSite: 'None',
-        ...options,
-      })
-    }
-
-    return
-  }
-
+export class ClientCookiesAdapter implements Partial<ICacheStorage> {
   get(key: string): string | null {
     try {
-      return JSON.parse(Cookies.get(key)!)
+      const cookieValue = getCookie(key) ?? null
+      return cookieValue ? JSON.parse(cookieValue) : null
     } catch (e) {
       return null
-    }
-  }
-
-  delete(key: string): void {
-    Cookies.remove(key)
-  }
-
-  clear(): void {
-    for (const cookie in Cookies.get()) {
-      Cookies.remove(cookie)
     }
   }
 }

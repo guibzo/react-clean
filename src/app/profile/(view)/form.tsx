@@ -18,6 +18,7 @@ const formInputs: Input[] = [
     name: 'id',
     label: 'ID do usuário',
     placeholder: '1',
+    type: 'number',
   },
   {
     name: 'cep',

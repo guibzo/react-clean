@@ -1,13 +1,12 @@
 import { useFormValidation } from '@/application/hooks/use-form-validation'
-import type { User } from '@/infra/@types/entities/User'
+import { useUser } from '@/application/state/contexts/user-context'
 import { GetProfileGateway } from '@/infra/gateways/GetProfileGateway'
-import { useState } from 'react'
 import { useHookFormMask } from 'use-mask-input'
 import { changeAddressFormErrorMessages, changeAddressFormSchema } from './schemas'
 import type { TypeSchema } from './types'
 
 export const useController = () => {
-  const [user, setUser] = useState<User>()
+  const { setUser } = useUser()
 
   const onGetProfile = async (formData: TypeSchema) => {
     console.log(formData)
@@ -30,7 +29,6 @@ export const useController = () => {
     inputs,
     inputsMask,
     isSubmitting,
-    user,
     inputErrors,
   }
 }

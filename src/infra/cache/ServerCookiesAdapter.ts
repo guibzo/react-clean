@@ -1,5 +1,5 @@
 /* 
-	Updating cookies (delete/set) shall be done either on **Server Actions** or **Route Handlers**, as it is not supported to  
+	Updating cookies (delete/set/clear) shall be done either on **Server Actions** or **Route Handlers**, as it is not supported to  
 	do so in client or server components.
 	REF: https://nextjs.org/docs/app/api-reference/functions/cookies, https://github.com/andreizanik/cookies-next
 */
