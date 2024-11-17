@@ -4,9 +4,9 @@
 	REF: https://nextjs.org/docs/app/api-reference/functions/cookies, https://github.com/andreizanik/cookies-next
 */
 
-import type { CacheStorageInterface } from '@/application/@interfaces/cache/cache-storage-interface'
 import 'client-only'
 
+import type { CacheStorageInterface } from '@/application/@interfaces/cache/cache-storage-interface'
 import { getCookie } from 'cookies-next'
 
 export class ClientCookiesAdapter implements Partial<CacheStorageInterface> {

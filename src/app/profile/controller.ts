@@ -1,4 +1,4 @@
-import { GetProfileAction } from '@/application/actions'
+import { getProfileAction } from '@/application/actions'
 import { useFormValidation } from '@/application/hooks/use-form-validation'
 import { useUser } from '@/application/state/contexts/user-context'
 import { useHookFormMask } from 'use-mask-input'
@@ -10,7 +10,7 @@ export const useController = () => {
 
   const onGetProfile = async (formData: TypeSchema) => {
     console.log(formData)
-    const response = await GetProfileAction({ id: formData.id })
+    const response = await getProfileAction({ id: formData.id })
 
     setUser(response)
   }

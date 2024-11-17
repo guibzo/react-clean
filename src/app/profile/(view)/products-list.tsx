@@ -1,5 +1,5 @@
+import { callFetchProducts } from '@/app/http'
 import type { Product } from '@/application/@types/entities/product'
-import { callFetchProducts } from '@/infra/http'
 
 export const ProductsList = async () => {
   const products: Product[] = await callFetchProducts({})
