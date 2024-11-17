@@ -1,6 +1,6 @@
-import { env } from '@/infra/env'
+import { env } from '@/env'
 import type { RequestInit } from 'next/dist/server/web/spec-extension/request'
-import { ServerCookiesAdapter } from '../cache/ServerCookiesAdapter'
+import { ServerCookiesAdapter } from '../cache'
 
 type ServiceName = 'v1'
 type Path = string

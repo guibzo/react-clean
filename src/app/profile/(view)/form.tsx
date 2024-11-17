@@ -1,8 +1,8 @@
 'use client'
 
+import type { FormInput } from '@/application/@types/common/form-input'
 import { Input } from '@/application/components/form/input'
 import { SubmitButton } from '@/application/components/form/submit-button'
-import type { FormInput } from '@/infra/@types/common/app/IFormInput'
 import { useController } from '../controller'
 import { changeAddressFormErrorMessages, type ChangeAddressFormSchemaKeys } from '../schemas'
 

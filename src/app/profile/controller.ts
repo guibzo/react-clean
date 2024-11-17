@@ -1,6 +1,6 @@
+import { GetProfileAction } from '@/application/actions'
 import { useFormValidation } from '@/application/hooks/use-form-validation'
 import { useUser } from '@/application/state/contexts/user-context'
-import { GetProfileGateway } from '@/infra/gateways/GetProfileGateway'
 import { useHookFormMask } from 'use-mask-input'
 import { changeAddressFormErrorMessages, changeAddressFormSchema } from './schemas'
 import type { TypeSchema } from './types'
@@ -10,7 +10,7 @@ export const useController = () => {
 
   const onGetProfile = async (formData: TypeSchema) => {
     console.log(formData)
-    const response = await GetProfileGateway({ id: formData.id })
+    const response = await GetProfileAction({ id: formData.id })
 
     setUser(response)
   }

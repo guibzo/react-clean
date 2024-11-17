@@ -1,8 +1,8 @@
-import type { Product } from '@/infra/@types/entities/Product'
-import { FetchProductsGateway } from '@/infra/gateways/FetchProductsGateway'
+import type { Product } from '@/application/@types/entities/product'
+import { callFetchProducts } from '@/infra/http'
 
 export const ProductsList = async () => {
-  const products: Product[] = await FetchProductsGateway({})
+  const products: Product[] = await callFetchProducts({})
 
   return (
     <ul className='h-[200px] overflow-y-auto'>

@@ -1,4 +1,4 @@
-import type { DefaultCookieOptions } from './DefaultCookieOptions'
+import type { DefaultCookieOptions } from './default-cookie-options'
 
 export interface NextCookieOptions extends DefaultCookieOptions {
   maxAge?: number

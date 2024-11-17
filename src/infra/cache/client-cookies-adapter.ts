@@ -4,12 +4,12 @@
 	REF: https://nextjs.org/docs/app/api-reference/functions/cookies, https://github.com/andreizanik/cookies-next
 */
 
+import type { CacheStorageInterface } from '@/application/@interfaces/cache/cache-storage-interface'
 import 'client-only'
 
-import type { ICacheStorage } from '@/infra/@interfaces/cache/ICacheStorage'
 import { getCookie } from 'cookies-next'
 
-export class ClientCookiesAdapter implements Partial<ICacheStorage> {
+export class ClientCookiesAdapter implements Partial<CacheStorageInterface> {
   get(key: string): string | null {
     try {
       const cookieValue = getCookie(key) ?? null

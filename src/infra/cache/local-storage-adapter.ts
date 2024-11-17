@@ -1,10 +1,10 @@
-import type { ICacheStorage } from '@/infra/@interfaces/cache/ICacheStorage'
+import 'client-only'
 
-const isClientSide = typeof window !== 'undefined'
+import type { CacheStorageInterface } from '@/application/@interfaces/cache/cache-storage-interface'
 
-export class LocalStorageAdapter implements ICacheStorage {
+export class LocalStorageAdapter implements CacheStorageInterface {
   set(key: string, value: object | string): void {
-    if (isClientSide && localStorage) {
+    if (localStorage) {
       if (value) {
         return localStorage.setItem(key, JSON.stringify(value))
       }
@@ -14,7 +14,7 @@ export class LocalStorageAdapter implements ICacheStorage {
   }
 
   get(key: string): string | null {
-    if (isClientSide && localStorage) {
+    if (localStorage) {
       try {
         return JSON.parse(localStorage.getItem(key)!)
       } catch (e) {
@@ -26,13 +26,13 @@ export class LocalStorageAdapter implements ICacheStorage {
   }
 
   delete(key: string): void {
-    if (isClientSide && localStorage) {
+    if (localStorage) {
       localStorage.removeItem(key)
     }
   }
 
   clear(): void {
-    if (isClientSide && localStorage) {
+    if (localStorage) {
       localStorage.clear()
     }
   }

@@ -1,6 +1,6 @@
-import type { NextCookieOptions } from '@/infra/@types/cache/NextCookieOptions'
+import type { NextCookieOptions } from '@/application/@types/cache/next-cookie-options'
 
-export interface ICacheStorage {
+export interface CacheStorageInterface {
   get: (key: string) => string | null
   clear: () => void
   delete: (key: string) => void

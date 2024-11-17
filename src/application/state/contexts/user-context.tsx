@@ -1,5 +1,5 @@
-import { User } from '@/infra/@types/entities/User'
-import { ClientCookiesAdapter } from '@/infra/cache/ClientCookiesAdapter'
+import type { User } from '@/application/@types/entities/user'
+import { ClientCookiesAdapter } from '@/infra/cache'
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 
 export type UserContextType = {
