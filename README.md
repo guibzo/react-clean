@@ -1,45 +1,45 @@
-Add input with error automatically
+This is a sample project that focus on studying how to implement a clean and scalable React application using some patterns and best practices.
 
-## Docs - fluxo
+## Docs - Flow
 
 ### Actions
 
-- Server actions
-- Use-cases/Serviços
-- Usados nos **controllers**
-  - Além de executar as requests HTTP, gerenciam o cache e lógica relacionada á um serviço
+- Server actions.
+- Use cases/Services.
+- Used in **controllers**.
+  - Besides handling HTTP requests, they manage caching and service-related logic.
 
 ### Cache
 
-- Gerenciado pelas **actions**
-  - Local Storage
-  - Cookies
-    - Client
-    - Server
+- Managed by **actions**.
+  - Local Storage.
+  - Cookies.
+    - Client.
+    - Server.
 
 ### HTTP
 
-- Usados nas **actions**
-  - Requests
+- Used in **actions**.
+  - Requests.
 
 ### Controllers
 
-- Usado na **view**
-  - 1 controller por view (ou por conjunto de componentes onde faça sentido)
-  - Gerencia toda a lógica e estado da view
+- Used in the **view**.
+  - 1 controller per view (or per set of components where it makes sense).
+  - Manages all the logic and state of the view.
 
 ### View
 
-- Apresentação do(s) componente(s) em tela
+- Displays the component on the screen.
 
 ### File Casing
 
-- Arquivos na pasta app e application: kebab-case.
-- Os demais: PascalCase.
+- Files in the `app` and `application` folders: kebab-case.
+- All others: PascalCase.
 
 ### TO-DO:
 
-- Implementar Tanstack (talvez ssr/csr).
-- Testes.
+- Implement Tanstack (maybe SSR/CSR).
+- Tests.
 - Zustand?
-- Mais abstrações.
+- More abstractions.
